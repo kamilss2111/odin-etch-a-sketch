@@ -30,8 +30,8 @@ body {
 .controls {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    gap: 30px;
 }
 
 button {
@@ -52,10 +52,11 @@ button:active {
     border: 1px solid white;
     display: flex;
     flex-wrap: wrap;
+    background-color: white;
 }
 
 .grid-element:hover {
-    background-color: rgba(245, 245, 245, 0.5);
+    background-color: lightgray;
 }
 
 .footer {

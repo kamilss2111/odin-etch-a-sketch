@@ -1,7 +1,8 @@
 const GRID = document.querySelector("#grid");
 const GRID_ELEMENTS = document.querySelectorAll(".grid-element")
 const GRID_SIZE = 640; //grid size in px;
-const ORIGINAL_BACKGROUND_COLOR = "#1e1e1e";
+
+let currentMode = "standard";
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
@@ -28,12 +29,15 @@ function setGridSize(size) {
     GRID.style.height = `${GRID_SIZE}px`;
 }
 
-let currentColor = "white";
+let currentColor = "black";
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown)
         return
-    else 
+    
+    if(currentMode === "standard")
         e.target.style.backgroundColor = currentColor;
+    else if(currentMode === "eraser")
+        e.target.style.backgroundColor = "white";
 }
 
 function reloadGrid() {
@@ -48,6 +52,8 @@ function reloadGrid() {
 const CLEAR_BTN = document.querySelector("#clear");
 CLEAR_BTN.addEventListener("click", reloadGrid);
 
+const ERASER_BTN = document.querySelector("#eraser");
+ERASER_BTN.addEventListener("click", () => currentMode = "eraser");
 
 //Initialize the grid on body load
 document.body.onload = () => {
