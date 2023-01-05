@@ -1,5 +1,7 @@
-const GRID_ELEMENTS = document.querySelector("#grid-elements");
+const GRID = document.querySelector("#grid");
+const GRID_ELEMENTS = document.querySelectorAll(".grid-element")
 const GRID_SIZE = 640; //grid size in px;
+const ORIGINAL_BACKGROUND_COLOR = "#1e1e1e";
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
@@ -16,22 +18,36 @@ function setGrid() {
             div.addEventListener("mouseover", changeColor);
             div.addEventListener("click", changeColor);
     
-            GRID_ELEMENTS.appendChild(div);
+            GRID.appendChild(div);
         }
     }
 }
 
 function setGridSize(size) {
-    GRID_ELEMENTS.style.width = `${GRID_SIZE}px`;
-    GRID_ELEMENTS.style.height = `${GRID_SIZE}px`;
+    GRID.style.width = `${GRID_SIZE}px`;
+    GRID.style.height = `${GRID_SIZE}px`;
 }
 
+let currentColor = "white";
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown)
         return
     else 
-        console.log("test");
+        e.target.style.backgroundColor = currentColor;
 }
+
+function reloadGrid() {
+    clearGrid()
+    setGrid()
+  }
+  
+  function clearGrid() {
+    grid.innerHTML = ''
+  }
+
+const CLEAR_BTN = document.querySelector("#clear");
+CLEAR_BTN.addEventListener("click", reloadGrid);
+
 
 //Initialize the grid on body load
 document.body.onload = () => {
