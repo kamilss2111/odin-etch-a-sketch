@@ -8,6 +8,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .header {
@@ -20,8 +21,19 @@ body {
 .main {
     flex: 1;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#grid-elements {
+    border: 1px solid white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid-element:hover {
+    background-color: rgba(245, 245, 245, 0.5);
+}
 
 .footer {
     display: flex;  
