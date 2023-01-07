@@ -3,8 +3,12 @@ const GRID_ELEMENTS = document.querySelectorAll(".grid-element")
 const GRID_SIZE = 640; //grid size in px;
 
 let mouseDown = false;
-document.body.onmousedown = () => (mouseDown = true);
-document.body.onmouseup = () => (mouseDown = false);
+GRID.addEventListener("click", () => {
+    if(mouseDown === false)
+        mouseDown = true;
+    else 
+        mouseDown = false;
+});
 
 let gridRowSize = 16;
 function setGrid() {
@@ -15,8 +19,6 @@ function setGrid() {
             div.style.width = `${GRID_SIZE/gridRowSize}px`;
             div.style.height = `${GRID_SIZE/gridRowSize}px`;
             div.addEventListener("mouseover", changeColor);
-            div.addEventListener("click", changeColor);
-    
             GRID.appendChild(div);
         }
     }
@@ -30,7 +32,7 @@ function setGridSize(size) {
 let currentColorMode = "color";
 let currentColor = "#000000";
 function changeColor(e) {
-    if (e.type === 'mouseover' && !mouseDown)
+    if (!mouseDown)
         return
     
     if(currentColorMode === "color") {
