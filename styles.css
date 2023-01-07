@@ -35,6 +35,19 @@ body {
     gap: 30px;
 }
 
+button {
+    width: 150px;
+    height: 40px;
+    font-size: large;
+    background-color: #1e1e1e;
+    border: 2px solid white;
+    color: white;
+    border-radius: 8px;
+}
+
+button:active {
+    transform: scale(.95);
+}
 .info {
     margin-bottom: 50px;
 }
@@ -56,18 +69,11 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-button {
-    width: 150px;
-    height: 40px;
+#grid-size-info {
+    margin: 0;
+    padding: 0;
+    height: 10px;
     font-size: large;
-    background-color: #1e1e1e;
-    border: 2px solid white;
-    color: white;
-    border-radius: 8px;
-}
-
-button:active {
-    transform: scale(.95);
 }
 
 #grid {

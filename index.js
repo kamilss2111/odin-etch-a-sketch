@@ -65,6 +65,18 @@ ERASER_BTN.addEventListener("click", () => currentColorMode = "eraser");
 const CLEAR_BTN = document.querySelector("#clear");
 CLEAR_BTN.addEventListener("click", reloadGrid);
 
+const SIZE_PICKER = document.querySelector("#grid-size");
+const SIZE_INFO = document.querySelector("#grid-size-info");
+
+SIZE_PICKER.addEventListener("input", e => {
+    SIZE_INFO.textContent = `${e.target.value} x ${e.target.value}`;
+    gridRowSize = e.target.value;
+});
+
+SIZE_PICKER.addEventListener("change", e => {
+    reloadGrid();
+});
+
 //Initialize the grid on body load
 document.body.onload = () => {
     setGrid();
