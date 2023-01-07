@@ -34,6 +34,23 @@ body {
     gap: 30px;
 }
 
+#color {
+    width: 80px;
+    height: 80px;
+    border: none;
+    background-color: #1e1e1e;
+}
+
+#color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+  
+#color::-webkit-color-swatch {
+    border: none;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 button {
     width: 150px;
     height: 40px;

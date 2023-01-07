@@ -2,8 +2,6 @@ const GRID = document.querySelector("#grid");
 const GRID_ELEMENTS = document.querySelectorAll(".grid-element")
 const GRID_SIZE = 640; //grid size in px;
 
-let currentMode = "standard";
-
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -29,14 +27,16 @@ function setGridSize(size) {
     GRID.style.height = `${GRID_SIZE}px`;
 }
 
-let currentColor = "black";
+let currentColorMode = "color";
+let currentColor = "#000000";
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown)
         return
     
-    if(currentMode === "standard")
+    if(currentColorMode === "color") {
         e.target.style.backgroundColor = currentColor;
-    else if(currentMode === "eraser")
+    }
+    else if(currentColorMode === "eraser")
         e.target.style.backgroundColor = "white";
 }
 
@@ -49,11 +49,19 @@ function reloadGrid() {
     grid.innerHTML = ''
   }
 
+const COLOR_PICKER = document.querySelector("#color");
+COLOR_PICKER.addEventListener("change", e => {
+    currentColor = e.target.value
+});
+
+const COLOR_BTN = document.querySelector("#color-btn");
+COLOR_BTN.addEventListener("click", () => currentColorMode = "color");
+  
+const ERASER_BTN = document.querySelector("#eraser");
+ERASER_BTN.addEventListener("click", () => currentColorMode = "eraser");
+  
 const CLEAR_BTN = document.querySelector("#clear");
 CLEAR_BTN.addEventListener("click", reloadGrid);
-
-const ERASER_BTN = document.querySelector("#eraser");
-ERASER_BTN.addEventListener("click", () => currentMode = "eraser");
 
 //Initialize the grid on body load
 document.body.onload = () => {
