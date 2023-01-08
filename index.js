@@ -11,13 +11,13 @@ GRID.addEventListener("click", () => {
 });
 
 let gridRowSize = 16;
-function setGrid() {
-    for(let i = 0; i < gridRowSize; i++) {
-        for(let j = 0; j < gridRowSize; j++) {
+function setGrid(size ,gridSize) {
+    for(let i = 0; i < size; i++) {
+        for(let j = 0; j < size; j++) {
             const div = document.createElement("div");
             div.classList.add("grid-element");
-            div.style.width = `${GRID_SIZE/gridRowSize}px`;
-            div.style.height = `${GRID_SIZE/gridRowSize}px`;
+            div.style.width = `${gridSize/size}px`;
+            div.style.height = `${gridSize/size}px`;
             div.addEventListener("mouseover", changeColor);
             GRID.appendChild(div);
         }
@@ -25,8 +25,17 @@ function setGrid() {
 }
 
 function setGridSize(size) {
-    GRID.style.width = `${GRID_SIZE}px`;
-    GRID.style.height = `${GRID_SIZE}px`;
+    GRID.style.width = `${size}px`;
+    GRID.style.height = `${size}px`;
+}
+
+function reloadGrid() {
+    clearGrid();
+    setGrid(gridRowSize, GRID_SIZE);
+}
+  
+function clearGrid() {
+    grid.innerHTML = "";
 }
 
 let currentColorMode = "color";
@@ -39,29 +48,31 @@ function changeColor(e) {
         e.target.style.backgroundColor = currentColor;
     }
     else if(currentColorMode === "eraser")
-        e.target.style.backgroundColor = "white";
+        e.target.style.backgroundColor = "#ffffff";
 }
 
-function reloadGrid() {
-    clearGrid()
-    setGrid()
-  }
-  
-  function clearGrid() {
-    grid.innerHTML = ''
-  }
+function setBtnBackground(e) {
+    COLOR_BTN.style.backgroundColor = "#1f1f1f";
+    ERASER_BTN.style.backgroundColor = "#1f1f1f";
+
+    e.target.style.backgroundColor = "#ffffff30";
+}
 
 const COLOR_PICKER = document.querySelector("#color");
-COLOR_PICKER.addEventListener("change", e => {
-    currentColor = e.target.value
-});
+COLOR_PICKER.addEventListener("change", e => currentColor = e.target.value);
 
 const COLOR_BTN = document.querySelector("#color-btn");
-COLOR_BTN.addEventListener("click", () => currentColorMode = "color");
-  
+COLOR_BTN.addEventListener("click", e => {
+    currentColorMode = "color"
+    setBtnBackground(e);
+});
+
 const ERASER_BTN = document.querySelector("#eraser");
-ERASER_BTN.addEventListener("click", () => currentColorMode = "eraser");
-  
+ERASER_BTN.addEventListener("click", e => {
+    currentColorMode = "eraser";
+    setBtnBackground(e);
+});
+
 const CLEAR_BTN = document.querySelector("#clear");
 CLEAR_BTN.addEventListener("click", reloadGrid);
 
@@ -79,6 +90,7 @@ SIZE_PICKER.addEventListener("change", e => {
 
 //Initialize the grid on body load
 document.body.onload = () => {
-    setGrid();
+    setGrid(gridRowSize, GRID_SIZE);
     setGridSize(GRID_SIZE);
+    COLOR_BTN.style.backgroundColor = "#ffffff30";
 };

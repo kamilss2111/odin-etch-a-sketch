@@ -48,6 +48,7 @@ button {
 button:active {
     transform: scale(.95);
 }
+
 .info {
     margin-bottom: 50px;
 }
@@ -64,7 +65,7 @@ button:active {
 }
   
 #color::-webkit-color-swatch {
-    border: none;
+    border: 2px solid white;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
